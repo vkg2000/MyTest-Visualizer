@@ -1,5 +1,5 @@
 
-
+//Saving all questions with their option and correct answers
 
 var ques =[
 
@@ -417,26 +417,25 @@ var ques =[
 ];
 
 
+//Hepler variables and arrays
+
 var section = ["Mathematics", "Chemistry", "Physics", "Communication"];
 
 var score =[0,0,0,0];
 
 var total = [ques[0].length,ques[1].length,ques[2].length,ques[3].length];
 
-//Creating temporary variables
 
-
-const last_sec =4;
-
-var running_ques=0;
-var running_section=0;
+const last_sec =4;    //Since total section are 4
+var running_ques=0;   //Tell about curr question solving
+var running_section=0;  //Telll about current section we are in
 
 
 //Showing all questions
 
 function ShowQuestion(){
 
-        uncheck();
+        uncheck();  // Clearing the checkboxes while going to other question
 
         if(running_ques==ques[running_section].length-1 && running_section==last_sec-1)
         {
@@ -477,31 +476,39 @@ function ShowQuestion(){
 }
 
 
+//After starting the quiz ,displaying the main question panel
+
 document.getElementById("startbtn").onclick = function () {
     document.getElementById("start").style.display = 'none';
     document.getElementById("main").style.display = 'block';
 }
 
 
+
+//Events take place on clicking different Buttons
+
 document.getElementById("Submit").onclick = function () {
     //checkans
-    checkanswer();
+    checkanswer();  // Checks whether the anser is correct or not
     running_ques++;
     ShowQuestion();
 }
 
 document.getElementById("Next").onclick = function () {
     //checkans
-    checkanswer();
+    checkanswer();  // Checks whether the anser is correct or not
     running_ques++;
     ShowQuestion();
 }
 
 document.getElementById("nextsection").onclick = function () {
     //checkans
-    checkanswer();
+    checkanswer();  // Checks whether the anser is correct or not
     running_section++;
     running_ques=0;
+
+    //Disbling and displaying the required buttons
+
     document.getElementById("Submit").style.display ="inline";
     document.getElementById("Next").style.display ="inline";
     document.getElementById("nextsection").style.display ="none"; 
@@ -509,11 +516,14 @@ document.getElementById("nextsection").onclick = function () {
 
 }
 
+
 document.getElementById("result").onclick = function () {
     checkanswer();
-    getplots();
+    getplots();  //Plot function which plots all the charts
 }
 
+
+// Checkanswer() Checks whether the anser is correct or not
 
 function checkanswer()
 {
@@ -531,6 +541,8 @@ function checkanswer()
         }
 }
 
+// This helps in clearing the checkboxes while going to other question
+
 function uncheck() {
     var check_arr=document.forms[0];
     var i;
@@ -542,25 +554,43 @@ function uncheck() {
 }
 
 
+//Main plot function from where calling different plot function used for plotting different charts
+
 function getplots(){
     document.getElementById("main").style.display="none";
     document.getElementById("navbar").style.display="none";
     document.getElementById("final").style.display="block";
 
-    //for bar chart
+    //Calling different plot function for different type of chart
 
-    var plot_arr=[0,0,0,0];
-    var i;
-    for(var i=0;i<last_sec;i++)
-        plot_arr[i]=(score[i]/total[i])*100;
+    plotbar();
+    plothisto();
+    plotpie();
+    plotdonut();
+    }
 
+
+
+    //Function for ploting bar chart
+   //Google chart has been used for plotting all the charts
+
+    function plotbar(){
+
+
+
+        var plot_arr=[0,0,0,0]; //For storing perencentage marks
+        var i;
+        for(var i=0;i<last_sec;i++)
+            plot_arr[i]=(score[i]/total[i])*100;  //For storing perencentage marks
         
         google.charts.load('current', {'packages':['bar']});
         google.charts.setOnLoadCallback(drawStuff);
   
         function drawStuff() {
-          var data = new google.visualization.arrayToDataTable([
-            
+
+            //Input to google chart of percentage obtained i different subjects
+
+        var data = new google.visualization.arrayToDataTable([
             ['Subject', 'Percentage'],
             ['Mathematics', plot_arr[0]],
             ["Chemistry", plot_arr[1]],
@@ -584,80 +614,123 @@ function getplots(){
           var chart = new google.charts.Bar(document.getElementById('top_x_div'));
           chart.draw(data, options);
         };
+    }
 
 
-//for histograms
-google.charts.load("current", {packages:["corechart"]});
-google.charts.setOnLoadCallback(drawChart);
-function drawChart() {
-  var data = google.visualization.arrayToDataTable(
-    [
-    ['Subject', '% Score'],
-    ['Mathematics', plot_arr[0]],
-    ["Chemistry", plot_arr[1]],
-    ["Physics", plot_arr[2]],
-    ["Communication", plot_arr[3],
-    ]
-    ]);
+    //Function for ploting bar chart
+    //Google chart has been used for plotting all the charts
 
-  var options = {
-    title: 'Score in Different Subject',
-    legend: { position: 'none' },
-  };
+    function plothisto()
+    {
 
-  var chart = new google.visualization.Histogram(document.getElementById('histogram'));
-  chart.draw(data, options);
-}
+        var plot_arr=[0,0,0,0];  //For storing perencentage marks
+        var i;
+        for(var i=0;i<last_sec;i++)
+            plot_arr[i]=(score[i]/total[i])*100;  //For storing perencentage marks
 
-
-
-//for pie chart
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load("current", {packages:["corechart"]});
         google.charts.setOnLoadCallback(drawChart);
-  
         function drawChart() {
-  
-          var data = google.visualization.arrayToDataTable([
-            ['Subject', '% Contribution of each subject'],
+
+
+        //Input to google chart of percentage obtained i different subjects
+        var data = google.visualization.arrayToDataTable(
+            [
+            ['Subject', '% Score'],
             ['Mathematics', plot_arr[0]],
             ["Chemistry", plot_arr[1]],
             ["Physics", plot_arr[2]],
-            ["Communication", plot_arr[3]]
-          ]);
-  
-          var options = {
-            title: '% Contribution of each subject in Overall score'
-          };
-  
-          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  
-          chart.draw(data, options);
+            ["Communication", plot_arr[3],
+            ]
+            ]);
+
+        var options = {
+            title: 'Score in Different Subject',
+            legend: { position: 'none' },
+        };
+
+        var chart = new google.visualization.Histogram(document.getElementById('histogram'));
+        chart.draw(data, options);
+        }
+
+    }
+
+
+
+    //Function for ploting pie chart
+    //Google chart has been used for plotting all the charts
+
+    function plotpie(){
+
+        var plot_arr=[0,0,0,0];  //For storing perencentage marks
+        var i;
+        for(var i=0;i<last_sec;i++)
+            plot_arr[i]=(score[i]/total[i])*100; //For storing perencentage marks
+
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+    
+            function drawChart() {
+    
+            //Input to google chart of percentage obtained i different subjects
+
+            var data = google.visualization.arrayToDataTable([
+                ['Subject', '% Contribution of each subject'],
+                ['Mathematics', plot_arr[0]],
+                ["Chemistry", plot_arr[1]],
+                ["Physics", plot_arr[2]],
+                ["Communication", plot_arr[3]]
+            ]);
+    
+            var options = {
+                title: '% Contribution of each subject in Overall score'
+            };
+    
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    
+            chart.draw(data, options);
+            }
+
+
+        }
+
+    // Function for ploting donut chart
+    //Google chart has been used for plotting all the charts
+
+    function plotdonut(){
+
+        var plot_arr=[0,0,0,0];  //For storing perencentage marks
+        var i;
+        for(var i=0;i<last_sec;i++)
+            plot_arr[i]=(score[i]/total[i])*100;  //For storing perencentage marks
+
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+
+            //Input to google chart of percentage obtained i different subjects
+            
+            var data = google.visualization.arrayToDataTable([
+                ['Subject', '% Contribution of each subject'],
+                ['Mathematics', plot_arr[0]],
+                ["Chemistry", plot_arr[1]],
+                ["Physics", plot_arr[2]],
+                ["Communication", plot_arr[3]]
+            ]);
+
+            var options = {
+            title: '% Contribution of each subject in Overall score',
+            pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+
         }
 
 
-// for Donut Chart
-    google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Subject', '% Contribution of each subject'],
-            ['Mathematics', plot_arr[0]],
-            ["Chemistry", plot_arr[1]],
-            ["Physics", plot_arr[2]],
-            ["Communication", plot_arr[3]]
-        ]);
-
-        var options = {
-          title: '% Contribution of each subject in Overall score',
-          pieHole: 0.4,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
-      }
-
-
-}
+//Intially calling the showquestion function after starting the quiz
 
 ShowQuestion();
 
