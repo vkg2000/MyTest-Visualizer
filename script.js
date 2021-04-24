@@ -439,7 +439,6 @@ function ShowQuestion(){
 
         if(running_ques==ques[running_section].length-1 && running_section==last_sec-1)
         {
-            document.getElementById("Submit").style.display ="none";
             document.getElementById("Next").style.display ="none";
             document.getElementById("nextsection").style.display ="none"; 
             document.getElementById("result").style.display ="inline";
@@ -449,7 +448,6 @@ function ShowQuestion(){
 
         else if (running_ques==ques[running_section].length-1)
         {
-            document.getElementById("Submit").style.display ="none";
             document.getElementById("Next").style.display ="none";
             document.getElementById("nextsection").style.display ="inline"; 
  
@@ -485,14 +483,7 @@ document.getElementById("startbtn").onclick = function () {
 
 
 
-//Events take place on clicking different Buttons
 
-document.getElementById("Submit").onclick = function () {
-    //checkans
-    checkanswer();  // Checks whether the anser is correct or not
-    running_ques++;
-    ShowQuestion();
-}
 
 document.getElementById("Next").onclick = function () {
     //checkans
@@ -509,7 +500,6 @@ document.getElementById("nextsection").onclick = function () {
 
     //Disbling and displaying the required buttons
 
-    document.getElementById("Submit").style.display ="inline";
     document.getElementById("Next").style.display ="inline";
     document.getElementById("nextsection").style.display ="none"; 
     ShowQuestion();
@@ -645,7 +635,7 @@ function getplots(){
             ]);
 
         var options = {
-            title: '% Score in Different Subject',
+            title: 'Score in Different Subject',
             legend: { position: 'none' },
         };
 
@@ -709,7 +699,7 @@ function getplots(){
         function drawChart() {
 
             //Input to google chart of percentage obtained i different subjects
-            
+
             var data = google.visualization.arrayToDataTable([
                 ['Subject', '% Contribution of each subject'],
                 ['Mathematics', plot_arr[0]],
