@@ -645,7 +645,7 @@ function getplots(){
             ]);
 
         var options = {
-            title: 'Score in Different Subject',
+            title: '% Score in Different Subject',
             legend: { position: 'none' },
         };
 
