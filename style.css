@@ -1,0 +1,100 @@
+.title{
+    text-align: center;
+}
+
+#start{
+    height: 450px;
+    width: 80%;
+    border: 1px outset rgb(255, 0, 212);
+    background-color: lightblue;
+    text-align: center;
+    margin-left: 10%;
+    margin-top: 5px;
+
+}
+
+#startbtn{
+    height: 100px;
+    width: 30%;
+    border: 1px outset rgb(255, 0, 212);
+    text-align: center;
+    margin-top: 200px;
+
+}
+
+#main{
+    height: 450px;
+    width: 80%;
+    border: 1px outset rgb(255, 0, 212);
+    background-color: lightgoldenrodyellow;
+    margin-left: 10%;
+    margin-top: 5px;
+
+}
+
+#section{
+    text-align: center;
+    color: green;
+    font-size:240%;
+    
+
+}
+
+#question{
+    margin-left: 10px;
+    font-size:150%;
+
+}
+
+#choices{
+    margin-left: 10px;
+    font-size:120%;
+}
+
+#submit_buttons{
+    text-align: center;
+    margin-top: 30px;
+}
+
+#Submit,#Next{
+    height: 80px;
+    width: 20%;
+    border: 1px outset rgb(255, 0, 212);
+    background-color: aquamarine;
+}
+
+#nextsection{
+    height: 70px;
+    width: 30%;
+    border: 1px outset rgb(255, 0, 212);
+    background-color: aquamarine;
+    display: none;
+}
+
+#result{
+    height: 70px;
+    width: 30%;
+    border: 1px outset rgb(255, 0, 212);
+    background-color: aquamarine;
+    display: none;
+}
+
+#navbar{
+    text-align: center;
+}
+
+#top_x_div,#histogram,#piechart,#donutchart{
+    margin: auto;
+    margin-top: 30px;
+}
+
+#final{
+    display: none;
+}
+
+#headings{
+    margin-left: 20px;
+    margin-top: 10px;
+    color: green;
+
+}
