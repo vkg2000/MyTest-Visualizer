@@ -98,7 +98,6 @@
         </div>
 
         <div id ="submit_buttons">
-                <button id="Submit">Submit</button> 
                 <button id="Next">Next</button> 
                 <button id="nextsection" >Submit and Go To Next Section</button>
                 <button id="result" >Submit and Go To Final Result</button>
