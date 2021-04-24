@@ -58,8 +58,6 @@
             Start Quiz
         </button>
 
-
-
     </div>
 
 
@@ -70,9 +68,6 @@
 
     <div id="main" style="display: none">
 
-
-        
-        
 
         <div id="section">
         </div> 
@@ -112,29 +107,28 @@
     </div>
     
 
-    <! -- Plotting the score table -->
     
     <div id="final">
 
  
-    <! -- Plotting division-->
+        <! -- Plotting division-->
 
 
-    <h2 id="headings">Visualization 1: Bar Chart</h2>
+        <h2 id="headings">Visualization 1: Bar Chart</h2>
 
-    <div id="top_x_div" style="width: 900px; height: 500px;"></div>
+        <div id="top_x_div" style="width: 900px; height: 500px;"></div>
 
-    <h2 id="headings">Visualization 2: Histogram </h2>
+        <h2 id="headings">Visualization 2: Histogram </h2>
 
-    <div id="histogram" style="width: 900px; height: 500px;"></div>
+        <div id="histogram" style="width: 900px; height: 500px;"></div>
 
-    <h2 id="headings">Visualization 3: Pie Chart</h2>
+        <h2 id="headings">Visualization 3: Pie Chart</h2>
 
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
 
-    <h2 id="headings">Visualization 4: Donut Chart</h2>
+        <h2 id="headings">Visualization 4: Donut Chart</h2>
 
-    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+        <div id="donutchart" style="width: 900px; height: 500px;"></div>
 
     </div>
 
